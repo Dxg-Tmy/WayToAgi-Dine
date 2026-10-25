@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>麦点点 · 无障碍点餐盒 WebHID 演示 v2.0.0</title>
+<style>
+  body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:780px;margin:24px auto;padding:0 16px;color:#222;background:#fff}
+  h1{font-size:20px} code{background:#f3f3f3;padding:1px 5px;border-radius:4px}
+  .warn{background:#fff7e6;border:1px solid #ffd591;padding:10px 12px;border-radius:8px;font-size:13px;line-height:1.6}
+  button{cursor:pointer;font-size:15px;border:none;border-radius:10px;padding:12px 16px;margin:6px;color:#fff}
+  #connect{background:#1677ff}
+  .hw{background:#2f54eb} .sim{background:#52c41a} .siml{background:#722ed1}
+  .hw:active,.sim:active,.siml:active{filter:brightness(.85)}
+  .box{border:2px dashed #ccc;border-radius:14px;padding:16px;margin:14px 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  #status{font-weight:600;margin:8px 0}
+  pre{background:#0f172a;color:#e2e8f0;padding:12px;border-radius:8px;height:240px;overflow:auto;font-size:13px;line-height:1.5}
+  .arrow{color:#52c41a} .arrow2{color:#1677ff}
+  table{border-collapse:collapse;font-size:14px;margin:10px 0}
+  td,th{border:1px solid #e5e7eb;padding:6px 10px;text-align:left}
+  th{background:#f9fafb}
+  .tag{display:inline-block;background:#eef2ff;color:#3730a3;border-radius:6px;padding:1px 7px;font-size:12px;margin-left:6px}
+</style>
+</head>
+<body>
+<h1>麦点点 · 无障碍点餐盒 WebHID 演示 <span class="tag">协议 v2.0.0</span></h1>
+
+<div class="warn">
+  ⚠️ 请用 <b>Chrome / Edge 桌面版</b> 打开本页，且必须通过 <code>http://localhost</code> 或 <code>https</code> 访问
+  （直接双击 <code>file://</code> 打开时浏览器禁用 WebHID）。<br>
+  本地预览：在 <code>firmware/</code> 目录下执行 <code>python -m http.server 8000</code>，再访问
+  <code>http://localhost:8000/webhid-demo.html</code>。<br>
+  <b>本版本硬件只有 3 个按键（无 LED / 无蜂鸣器）</b>，按钮3 额外支持<b>长按</b>。
+</div>
+
+<p><button id="connect">🔌 连接设备</button> <span id="status">未连接</span></p>
+
+<h3>按键 ↔ 硬件接线 ↔ 上报码</h3>
+<table>
+  <tr><th>按键</th><th>丝印</th><th>GPIO</th><th>接法</th><th>上报码</th></tr>
+  <tr><td>NEXT 下一个</td><td>D0</td><td>GP0</td><td>一脚接 GPIO，另一脚接 <b>GND</b></td><td><code>0x01</code>（短按）</td></tr>
+  <tr><td>OK 确定</td><td>D1</td><td>GP1</td><td>一脚接 GPIO，另一脚接 <b>GND</b></td><td><code>0x02</code>（短按）</td></tr>
+  <tr><td>FINISH 完成</td><td>D4</td><td>GP4</td><td>一脚接 GPIO，另一脚接 <b>GND</b></td><td><code>0x03</code>（短按）<br><code>0x04</code>（长按 ≥800ms）</td></tr>
+</table>
+<p style="font-size:13px;color:#666;line-height:1.7">
+  固件已开内部上拉，<b>不需要外接上下拉电阻</b>；未按=高电平 1，按下接地=低电平 0。<br>
+  按钮3 是"二选一"：短按只会收到 <code>0x03</code>，长按只会收到 <code>0x04</code>，<b>不会先 3 再 4</b>。
+</p>
+
+<div class="box">
+  <button class="hw" data-btn="1">实体键模拟 NEXT (D0)</button>
+  <button class="hw" data-btn="2">实体键模拟 OK (D1)</button>
+  <button class="hw" data-btn="3">实体键模拟 FINISH (D4)</button>
+</div>
+
+<h3 class="arrow2">收到设备 → 网页 的 HID Input Report（reportId=1）</h3>
+<pre id="log"></pre>
+
+<h3 class="arrow">无硬件也能看协议：模拟发送</h3>
+<p>
+  <button class="sim" data-btn="1">模拟 NEXT (0x01)</button>
+  <button class="sim" data-btn="2">模拟 OK (0x02)</button>
+  <button class="sim" data-btn="3">模拟 FINISH 短按 (0x03)</button>
+  <button class="siml" data-btn="4">模拟 FINISH 长按 (0x04)</button>
+</p>
+
+<script>
+const BUTTONS = {1:'NEXT 下一个', 2:'OK 确定', 3:'FINISH 完成（短按）', 4:'FINISH 完成（长按）'};
+const HEX = b => '0x' + b.toString(16).padStart(2,'0');
+let device = null;
+const $ = id => document.getElementById(id);
+const log = (cls, msg) => {
+  const el = $('log');
+  const line = document.createElement('div');
+  line.className = cls;
+  line.textContent = msg;
+  el.appendChild(line);
+  el.scrollTop = el.scrollHeight;
+};
+const setStatus = t => $('status').textContent = t;
+
+$('connect').onclick = async () => {
+  try {
+    const devs = await navigator.hid.requestDevice({ filters:[{ usagePage: 0xff00 }] });
+    if (!devs.length) { setStatus('未选中设备'); return; }
+    device = devs[0];
+    await device.open();
+    setStatus('已连接：' + (device.productName || 'DINE Order Box'));
+    await device.sendReport(2, new Uint8Array([2]));   // 握手：CONNECTED
+    log('arrow2', '→ 已发送 Output Report reportId=2 [0x02] CONNECTED 握手');
+    device.addEventListener('inputreport', onInput);
+  } catch(e){ setStatus('错误：' + e.message); }
+};
+
+function onInput(e){
+  if (e.reportId !== 1) return;
+  const code = e.data.getUint8(0);
+  const isLong = (code === 4);
+  log('arrow2', `← Input Report: reportId=${e.reportId} 载荷=${HEX(code)}  ${BUTTONS[code]||'未知'}` +
+               (isLong ? '   ← 长按，建议做二次确认' : ''));
+  if (device) device.sendReport(2, new Uint8Array([1]));  // 回确认：BLINK
+}
+
+// 实体按键说明：真实硬件按下时才会发，这里点一下只是把协议内容打出来
+document.querySelectorAll('.hw').forEach(b => {
+  b.onclick = () => log('', `（实体键）按下 ${b.textContent.trim()} 后，硬件会发 Input Report reportId=1 载荷=${HEX(+b.dataset.btn)}`);
+});
+// 模拟按键：仅展示协议内容（Input Report 只能由设备发，网页发过去没有意义）
+document.querySelectorAll('.sim,.siml').forEach(b => {
+  b.onclick = () => {
+    const code = +b.dataset.btn;
+    log('arrow', `→ 协议展示 Input Report: reportId=1 载荷=${HEX(code)} = ${BUTTONS[code]}`);
+    log('', '   （Input Report 只能由硬件发出；想看真实报文请按实体键）');
+  };
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<svg viewBox="0 0 680 460" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="'PingFang SC','Microsoft YaHei',sans-serif" role="img">
+<title>麦点点 OB-3 无障碍点单盒 产品效果图</title>
+<desc>纸壳手作点单盒最终外观：红顶黄拱品牌盖、前面三键露出于外、USB 线从背面底部引出</desc>
+<rect width="680" height="460" fill="#f5f7f9"/>
+<text x="28" y="38" font-size="18" font-weight="700" fill="#222">麦点点 OB-3 · 无障碍点单盒</text>
+<text x="28" y="60" font-size="13" fill="#777">产品效果图（纸壳 + 热熔胶 手作参考）</text>
+<ellipse cx="340" cy="420" rx="170" ry="20" fill="#000" opacity="0.10"/>
+<polygon points="250,180 430,180 470,150 290,150" fill="#b78f54"/>
+<polygon points="430,180 470,150 470,378 430,408" fill="#b8924f"/>
+<g stroke="#9c7a44" stroke-width="1" opacity="0.5"><line x1="442" y1="168" x2="442" y2="394"/><line x1="454" y1="162" x2="454" y2="386"/></g>
+<rect x="250" y="180" width="180" height="228" fill="#cda86a" stroke="#9c7a44" stroke-width="1"/>
+<rect x="262" y="196" width="156" height="54" rx="8" fill="#DA291C"/>
+<path d="M280 244 Q294 210 308 244" stroke="#FFC72C" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M316 244 Q330 210 344 244" stroke="#FFC72C" stroke-width="6" fill="none" stroke-linecap="round"/>
+<text x="356" y="232" font-size="19" font-weight="700" fill="#FFC72C">麦点点</text>
+<text x="340" y="268" font-size="13" fill="#3a2a12" text-anchor="middle">无障碍点单盒</text>
+<text x="340" y="286" font-size="10.5" fill="#6b5530" text-anchor="middle">ACCESS 系列 · OB-3 · v2.0</text>
+<rect x="262" y="294" width="156" height="6" fill="#FFC72C"/>
+<circle cx="300" cy="345" r="24" fill="#FFC72C" stroke="#C8941A" stroke-width="3"/>
+<text x="300" y="351" font-size="15" font-weight="700" fill="#5b3d05" text-anchor="middle">上一个</text>
+<circle cx="340" cy="345" r="24" fill="#DA291C" stroke="#9E1B12" stroke-width="3"/>
+<text x="340" y="351" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">下一个</text>
+<circle cx="380" cy="345" r="24" fill="#ffffff" stroke="#FFC72C" stroke-width="4"/>
+<text x="380" y="351" font-size="11" font-weight="700" fill="#222" text-anchor="middle">确认/结算</text>
+<path d="M452 392 C 520 415, 560 432, 648 418" stroke="#222" stroke-width="7" fill="none" stroke-linecap="round"/>
+<rect x="640" y="408" width="30" height="20" rx="4" fill="#333"/>
+<text x="655" y="402" font-size="10" fill="#555" text-anchor="middle">USB</text>
+<rect x="398" y="190" width="34" height="16" rx="3" fill="#FFC72C"/>
+<text x="415" y="202" font-size="10" font-weight="700" fill="#5b3d05" text-anchor="middle">v2.0</text>
+</svg>

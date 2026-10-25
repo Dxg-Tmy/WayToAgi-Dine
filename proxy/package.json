@@ -1,0 +1,12 @@
+{
+  "name": "shundian-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "顺点 · 本地 MCP 代理（Token 只在服务端，零依赖）",
+  "scripts": {
+    "start": "node server.mjs",
+    "refresh": "node refresh-snapshot.mjs",
+    "refresh:coupons": "node refresh-snapshot.mjs --coupons"
+  }
+}

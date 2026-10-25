@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297">
+  <!-- 背景 -->
+  <rect x="0" y="0" width="210" height="297" fill="#ffffff"/>
+
+  <!-- 顶部红带 + 品牌 -->
+  <rect x="0" y="0" width="210" height="40" fill="#DA291C"/>
+  <!-- 黄拱 -->
+  <path d="M70 30 A14 14 0 0 1 98 30" fill="none" stroke="#FFC72C" stroke-width="5"/>
+  <path d="M112 30 A14 14 0 0 1 140 30" fill="none" stroke="#FFC72C" stroke-width="5"/>
+  <text x="105" y="26" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="sans-serif">麦点点</text>
+  <text x="105" y="37" font-size="6" fill="#FFE08A" text-anchor="middle" font-family="sans-serif">无障碍点餐盒 · 使用说明</text>
+
+  <!-- 一句话 -->
+  <text x="105" y="52" font-size="7.5" font-weight="700" fill="#DA291C" text-anchor="middle" font-family="sans-serif">不靠眼睛，也能自己点一顿麦当劳</text>
+
+  <!-- 三键示意图 -->
+  <text x="14" y="66" font-size="6" font-weight="700" fill="#333" font-family="sans-serif">三个键（从左到右）</text>
+
+  <!-- 上一个 黄 -->
+  <circle cx="45" cy="90" r="20" fill="#FFC72C" stroke="#C9920A" stroke-width="1.5"/>
+  <text x="45" y="93" font-size="6.5" font-weight="700" fill="#5b3d05" text-anchor="middle" font-family="sans-serif">上一个</text>
+
+  <!-- 下一个 红 -->
+  <circle cx="105" cy="90" r="20" fill="#DA291C" stroke="#9E1B12" stroke-width="1.5"/>
+  <text x="105" y="93" font-size="6.5" font-weight="700" fill="#ffffff" text-anchor="middle" font-family="sans-serif">下一个</text>
+
+  <!-- 确认·结算 白底黄圈 -->
+  <circle cx="165" cy="90" r="20" fill="#ffffff" stroke="#FFC72C" stroke-width="3.5"/>
+  <text x="165" y="87" font-size="6" font-weight="700" fill="#222" text-anchor="middle" font-family="sans-serif">确认</text>
+  <text x="165" y="95" font-size="5" font-weight="700" fill="#DA291C" text-anchor="middle" font-family="sans-serif">·结算</text>
+
+  <!-- 键位用法 -->
+  <rect x="14" y="120" width="182" height="22" rx="3" fill="#FFF6E5" stroke="#FFC72C" stroke-width="1"/>
+  <text x="20" y="129" font-size="5.5" fill="#5b3d05" font-family="sans-serif">• 上 / 下：在选项间移动，语音播报当前项</text>
+  <text x="20" y="139" font-size="5.5" fill="#5b3d05" font-family="sans-serif">• 确认·结算：单击=确认前进 ｜ 长按≈0.8秒=呼出结算（再单击进结算，上下取消）</text>
+
+  <!-- 四步流程 -->
+  <text x="14" y="158" font-size="6" font-weight="700" fill="#333" font-family="sans-serif">点餐流程（最多 3 页）</text>
+  <g font-family="sans-serif">
+    <rect x="14"  y="164" width="44" height="30" rx="3" fill="#f3f3f3" stroke="#ccc"/>
+    <text x="36" y="176" font-size="11" font-weight="700" fill="#DA291C" text-anchor="middle">1</text>
+    <text x="36" y="186" font-size="5" fill="#333" text-anchor="middle">开场</text>
+    <text x="36" y="192" font-size="4" fill="#666" text-anchor="middle">套餐/单点</text>
+
+    <rect x="63"  y="164" width="44" height="30" rx="3" fill="#f3f3f3" stroke="#ccc"/>
+    <text x="85" y="176" font-size="11" font-weight="700" fill="#DA291C" text-anchor="middle">2</text>
+    <text x="85" y="186" font-size="5" fill="#333" text-anchor="middle">选品</text>
+    <text x="85" y="192" font-size="4" fill="#666" text-anchor="middle">逐轮配置</text>
+
+    <rect x="112" y="164" width="44" height="30" rx="3" fill="#f3f3f3" stroke="#ccc"/>
+    <text x="134" y="176" font-size="11" font-weight="700" fill="#DA291C" text-anchor="middle">3</text>
+    <text x="134" y="186" font-size="5" fill="#333" text-anchor="middle">结算</text>
+    <text x="134" y="192" font-size="4" fill="#666" text-anchor="middle">核对价格</text>
+
+    <rect x="161" y="164" width="44" height="30" rx="3" fill="#f3f3f3" stroke="#ccc"/>
+    <text x="183" y="176" font-size="11" font-weight="700" fill="#DA291C" text-anchor="middle">4</text>
+    <text x="183" y="186" font-size="5" fill="#333" text-anchor="middle">支付</text>
+    <text x="183" y="192" font-size="4" fill="#666" text-anchor="middle">到店取餐</text>
+  </g>
+
+  <!-- 连接提示 -->
+  <text x="14" y="214" font-size="6" font-weight="700" fill="#333" font-family="sans-serif">怎么连</text>
+  <text x="14" y="224" font-size="5" fill="#444" font-family="sans-serif">① USB 接电脑  →  ② 打开点餐网页  →  ③ 设置里勾选「使用实体点餐盒」</text>
+  <text x="14" y="233" font-size="5" fill="#444" font-family="sans-serif">无硬件：设置切「屏幕按钮」，用大按钮或键盘 ↑/↓/Enter（Shift+Enter=长按）</text>
+
+  <!-- 常见问题 -->
+  <text x="14" y="250" font-size="6" font-weight="700" fill="#333" font-family="sans-serif">小贴士</text>
+  <text x="14" y="260" font-size="4.6" fill="#444" font-family="sans-serif">· 按键没反应：查 USB 是否插紧、是否桌面版 Chrome/Edge、是否已勾选实体盒</text>
+  <text x="14" y="268" font-size="4.6" fill="#444" font-family="sans-serif">· 菜单空白：首载需几秒，或点「刷新菜单」（带冷却）</text>
+  <text x="14" y="276" font-size="4.6" fill="#444" font-family="sans-serif">· 部分商品语音报热量；结算前留意领券优惠</text>
+
+  <!-- 底注 -->
+  <line x1="14" y1="286" x2="196" y2="286" stroke="#ddd"/>
+  <text x="14" y="292" font-size="4" fill="#999" font-family="sans-serif">数据来自麦当劳官方 MCP（真实调用）｜ Token 仅存服务端，不进前端/仓库/截图</text>
+</svg>

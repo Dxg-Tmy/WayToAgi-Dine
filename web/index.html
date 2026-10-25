@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>麦点点 · 让看不清楚、识字困难的人也能自己点麦当劳</title>
+<link rel="stylesheet" href="app.css?v=20261025f">
+</head>
+<body>
+
+<header id="topbar">
+  <div class="brand">麦点点<span class="brand-sub">无障碍顺序点餐</span></div>
+  <div class="status">
+    <span id="idle-timer" class="idle-timer" hidden></span>
+    <span id="mode-badge" class="badge">加载中</span>
+    <span id="store-name" class="store"></span>
+    <button id="btn-home" class="ctl ctl-home" type="button">回到主菜单</button>
+    <button id="btn-settings" class="ctl" type="button">设置</button>
+  </div>
+</header>
+
+<div id="net-banner" class="net-banner" hidden>
+  <span id="net-banner-msg"></span>
+  <button id="net-banner-refresh" class="ctl ctl-inv" type="button">刷新菜单</button>
+</div>
+
+<main id="wiz">
+  <div class="wiz-head">
+    <span id="wiz-step" class="wiz-step"></span>
+    <h1 id="wiz-title" class="wiz-title">正在加载菜单…</h1>
+    <p id="wiz-hint" class="wiz-hint"></p>
+    <div id="wiz-current" class="wiz-current" hidden></div>
+  </div>
+  <ul id="wiz-list" class="wiz-list" role="listbox" aria-label="选项"></ul>
+</main>
+
+<nav id="keypad" aria-label="点餐按键">
+  <button id="k-down" class="key key-down" type="button">▼ 下一个<span class="key-sub">按钮1</span></button>
+  <button id="k-up" class="key key-up" type="button">▲ 上一个<span class="key-sub">按钮2</span></button>
+  <button id="k-ok" class="key key-ok" type="button">确认<span class="key-sub">按钮3 · 长按直接结算</span></button>
+</nav>
+
+<div id="overlay" class="overlay" hidden>
+  <div id="overlay-panel" class="panel" role="dialog" aria-modal="true" aria-live="polite"></div>
+</div>
+
+<div id="settings" class="drawer" hidden>
+  <h2>设置（旁路 · 供协助者使用）</h2>
+  <label class="row"><input type="checkbox" id="set-voice" checked> 语音播报</label>
+  <label class="row"><input type="checkbox" id="set-mock" checked> 模拟支付（演示不扣款）</label>
+  <label class="row"><input type="checkbox" id="set-physical"> 使用实体点餐盒（隐藏屏幕按钮）</label>
+  <label class="row">无操作自动清空订单
+    <select id="set-idle">
+      <option value="0">关闭</option>
+      <option value="30">30 秒</option>
+      <option value="60" selected>60 秒</option>
+      <option value="120">120 秒</option>
+    </select>
+  </label>
+  <div class="row btns">
+    <button id="btn-voice-test" class="ctl" type="button">试听语音</button>
+    <button id="btn-hid2" class="ctl" type="button">连接 / 重连点餐盒</button>
+    <button id="btn-log" class="ctl" type="button">MCP 调用记录</button>
+    <button id="btn-close-settings" class="ctl" type="button">关闭</button>
+  </div>
+  <div id="voice-state" class="voice-state"></div>
+  <div id="debug-state" class="voice-state"></div>
+  <div id="mcp-log-view" hidden></div>
+</div>
+
+<div id="toast" class="toast" hidden></div>
+<div id="a11y-live" class="sr-only" aria-live="polite"></div>
+
+<!-- 三时段(早+午+晚)合并全量快照：内联打包，离线/无代理/file:// 预览也能秒开菜单，不受 fetch/CORS 限制 -->
+<script src="data/menu-snapshot.js?v=20261025a"></script>
+<script src="app.js?v=20261025j"></script>
+</body>
+</html>

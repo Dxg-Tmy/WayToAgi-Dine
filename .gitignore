@@ -1,0 +1,30 @@
+# 依赖与工具（不进仓库）
+node_modules/
+tools/
+*.log
+
+# MCP Token 等机密（硬性要求：Token 不进公开仓库）
+proxy/.env
+.env
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# WorkBuddy 内部目录（交付物是 workbuddy.md，不是这个）
+.workbuddy/
+
+# 部署测试临时目录
+.deploy-test/
+
+# 固件编译产物（不入仓库；用 firmware/build-flash.sh 一键重出）
+firmware/build/
+firmware/__pycache__/
+*.pyc
+*.uf2
+*.elf
+*.bin
+*.map
+*.o
+*.d
